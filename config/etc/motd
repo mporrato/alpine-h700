@@ -1,0 +1,11 @@
+Welcome to Alpine!
+
+This is an unofficial port to the Allwinner H700 SoC: please report
+issues to https://github.com/mporrato/alpine-h700 .
+
+The Alpine Wiki contains a large amount of how-to guides and general
+information about administrating Alpine systems.
+See <https://wiki.alpinelinux.org/>.
+
+You may change this message by editing /etc/motd.
+

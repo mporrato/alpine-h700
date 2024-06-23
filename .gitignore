@@ -1,0 +1,6 @@
+*.img
+!config/
+config/*
+!config/etc/
+config/etc/*
+!config/etc/motd
