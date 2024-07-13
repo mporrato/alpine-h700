@@ -14,18 +14,21 @@ image has been tested on an Anbernic RG35XX Plus portable console.
 
 The scripts require the following software:
 
-- `make` (specifically, GNU Make) to orchestrate the build and track dependencies
-- `python3` to run some of the provided scripts; only modules from the standard
-  library are used
+- `make` (specifically, GNU Make) to orchestrate the build and track
+  dependencies
+- `python3` to run some of the provided scripts; only modules from the
+  standard library are used
 - `sgdisk` to manipulate GPT partition tables
 - `guestfish` to manipulate filesystem images without root privileges
+- `fakeroot` to inject custom configuration files into the rootfs image
+  without root privileges
 - `podman` to provide an Alpine Linux environment
 - `qemu-user-static-aarch64` to enable `podman` to run aarch64 container
   images on a different architecture like x86_64
 
-An image of a stock SD card is required in order to extract components that are
-specific to the H700 SoC that do not have open source alternatives yet; those
-components are:
+An image of a stock SD card is required in order to extract components that
+are specific to the H700 SoC that do not have open source alternatives yet;
+those components are:
 
 - the SPL
 - the U-Boot bootloader
@@ -48,9 +51,11 @@ A good staring point would be something like this (replace `$ssid` and
 ```shell
 mkdir -p config/etc/wpa_supplicant
 wpa_passphrase '$ssid' '$password' >config/etc/wpa_supplicant/wpa_supplicant.conf
+chmod 600 config/etc/wpa_supplicant/wpa_supplicant.conf
 
 mkdir -p config/root/.ssh
 cat ~/.ssh/id_*.pub >config/root/.ssh/authorized_keys
+chmod 700 config/root config/root/.ssh
 ```
 
 ### Stock SD card image
