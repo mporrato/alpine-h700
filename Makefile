@@ -72,7 +72,7 @@ $(CONFIG_TAR): $(shell find $(C) -type f -print0 | xargs -0)
 $(ROOTFS): $(ROOTFS_TAR) $(FIRMWARE_TAR) $(MODULES_TAR) $(CONFIG_TAR)
 	$(RM) $@
 	truncate -s $(ROOTFS_SIZE) $@
-	$(S)/mkfsimage.sh $@ 0 ext4 rootfs $(ROOTFS_TAR) $(FIRMWARE_TAR):/lib/firmware/ $(MODULES_TAR):/lib/modules/ config.tar
+	$(S)/mkfsimage.sh $@ 0 ext4 rootfs $(ROOTFS_TAR) $(FIRMWARE_TAR):/lib/firmware/ $(MODULES_TAR):/lib/modules/ $(CONFIG_TAR)
 
 clean:
 	$(RM) $(A)/*
